@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  {% include 'header.html' %}
+
+  <div class="container">
+    <h1 class="text-center my-4">Your Bookings</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Bus Number</th>
+                <th scope="col">Bus Name</th>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">No of seats</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in my_data %}
+            <tr>
+                <th scope="row">{{x.busnumber}}</th>
+                <td>{{x.busname}}</td>
+                <td>{{x.transactionid}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.source}}</td>
+                <td>{{x.destination}}</td>
+                <td>{{x.noseats}}</td>
+                <td>{{x.totalprice}}</td>
+                <td>{{x.status}}</td>
+                <td><a href="{{forloop.counter}}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}"><i class="fa-solid fa-eye"></i></a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td  colspan="10"><h3 class="text-center text-danger my-5">No Booking Found</h3></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
+
+  {% for v in my_data %}
+  <div class="modal fade" id="exampleModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Bookings Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><b>Bus Number:</b> {{v.busnumber}}</li>
+                      <li class="list-group-item"><b>Bus Name:</b> {{v.busname}}</li>
+                      <li class="list-group-item"><b>Transaction ID:</b> {{v.transactionid}}</li>
+                      <li class="list-group-item"><b>Date:</b> {{v.date}}</li>
+                      <li class="list-group-item"><b>Source:</b> {{v.source}}</li>
+                      <li class="list-group-item"><b>Deparcher Time:</b> {{v.deparchertime}}</li>
+                      <li class="list-group-item"><b>Destination:</b> {{v.destination}}</li>
+                      <li class="list-group-item"><b>Arrival Time:</b> {{v.arrivaltime}}</li>
+                      <li class="list-group-item"><b>Durition:</b> {{v.durition}}</li>
+                      <li class="list-group-item"><b>No of seats:</b> {{v.noseats}}</li>
+                      <li class="list-group-item"><b>Total Price:</b> {{v.totalprice}}/-</li>
+                      <li class="list-group-item"><b>Status:</b> {{v.status}}</li>
+                  </ul> 
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+{% include 'footer.html' %}
+
+</html>

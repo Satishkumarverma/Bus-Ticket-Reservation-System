@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Bus</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  {% include 'header.html' %}
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner" style="height: 300px;">
+      <div class="carousel-item active" style="height: 300px;">
+        <img src="{% static '/images/slider4.jpg' %}" class="d-block w-100" alt="img" style="height: 300px;">
+      </div>
+      <div class="carousel-item" style="height: 300px;">
+        <img src="{% static '/images/slide2.jpg' %}" class="d-block w-100" alt="img" style="height: 300px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Book Bus</h1>
+          <p>Start Your Journey.</p>
+        </div>
+      </div>
+      <div class="carousel-item" style="height: 300px;">
+        <img src="{% static '/images/slide3.jpg' %}" class="d-block w-100" alt="img" style="height: 300px;">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="container1 mt-5">
+    <h2 class="text-center"><i class="fa-solid fa-bus" style="margin-right: 10px;"></i>Book Bus Ticket</h2>
+    <form class="row g-3 d-flex justify-content-center" method="get" action="{% url 'bussearch' %}">
+      <div class="col-md-3">
+        <label for="source" class="form-label ps-2">Source</label>
+        <input type="text" class="form-control" id="source" placeholder="Depart From" name="source" Required>
+      </div>
+      <div class="col-md-3">
+        <label for="destination" class="form-label ps-2">Destination</label>
+        <input type="text" class="form-control" id="destination" placeholder="Going To" name="dest" Required>
+      </div>
+      <div class="col-md-3">
+        <label for="date" class="form-label ps-2">Date</label>
+        <input type="date" class="form-control" id="date" placeholder="Departure Date" name="date" Required>
+      </div>
+      {% if username %}
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-danger" style="margin-top: 30px;"><i class="fa-solid fa-magnifying-glass"
+            style="margin-right: 5px;"></i>Search Bus</button>
+      </div>
+      {% else %}
+      <div class="col-md-2">
+        <a href="/login/" class="btn btn-danger" style="margin-top: 30px;"><i class="fa-solid fa-magnifying-glass"
+            style="margin-right: 5px;"></i>Search Bus</a>
+        {% endif %}
+    </form>
+    {% for message in messages %}
+    <div id="passwordHelp" class="form-text text-danger ms-5">{{message}}</div>
+    {% endfor %}
+  </div>
+
+  <div class="container my-5">
+    <h6>Trending Packages</h6>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="{% static '/images/place1.jpg' %}" class="card-img-top" alt="...">
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static '/images/place2.jpg' %}" class="card-img-top" alt="...">
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static '/images/place3.jpg' %}" class="card-img-top" alt="...">
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static '/images/place4.jpg' %}" class="card-img-top" alt="...">
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static '/images/place5.jpg' %}" class="card-img-top" alt="...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+{% include 'footer.html' %}
+
+
+</html>

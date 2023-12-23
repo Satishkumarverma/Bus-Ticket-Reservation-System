@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Admin Signup</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center my-4">Admin Signup</h1>
+    <div class="container border rounded-3 border-2 px-4 pt-4 pb-2 mb-5" style="max-width: 540px;">
+      <form method="post" action="{% url 'adminsingup' %}">
+        {% csrf_token %}
+        <div class="mb-2">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp"
+            placeholder="Enter your name" required>
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="example@gmail.com" required>
+        </div>
+        <div class="mb-2">
+          <label for="phone" class="form-label">Phone No</label>
+          <input type="text" class="form-control" name="phone" id="phone" aria-describedby="emailHelp"
+            placeholder="Phone No" required>
+        </div>
+        <div class="mb-2">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" name="address" placeholder="address" id="address"></textarea>
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="password"
+            required>
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="conf_password" id="exampleInputPassword2"
+            placeholder="confirm password" aria-describedby="passwordHelp" required>
+          {% for message in messages %}
+          <div id="passwordHelp" class="form-text text-danger">{{message}}</div>
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <p style="font-size: smaller;">Already have an account?<a href="/admin_panel/adminlogin/" class="text-danger">Login</a></p>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
